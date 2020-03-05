@@ -1,0 +1,158 @@
+csrf
+	1.防止跨站攻击
+	2.实现方式
+		在表单中添加csrf_token，会响应自动生成一个cookie，csrftoken然后验证通过
+
+算法
+	摘要算法
+		md5
+			1.保证数据安全，数据发生一点办法，则加密后会发生很大的变化
+			2.32位的Unicode编码
+
+缓存
+	提升服务器相应速度
+	将执行过的数据处存下来，在一定时间下，直接从缓存中获取
+	使用内存缓存，比较理想
+	django中的内存缓存
+		python manage.py createcachetable my_cache_table
+AOP中间件
+	是一个轻量级的，底层的插件，可以介入django的请求和相应过程（面向切面编程）
+	本质就是Python类的一个装饰器
+	实现功能：
+		统计IP
+		统计浏览器
+	实现权重控制
+		黑名单 京东强卷
+		白名单 抽奖
+	实现反扒
+
+
+
+django debug toolbar
+
+1.jq md5.js加密
+2.发送邮件
+3.django自带的加密
+
+
+项目：
+	1.session错误信息使用完删除
+	  验证完直接删除
+
+
+小技巧
+	js获取属性的小技巧
+		1.attr：
+			可以获取任意属性
+		2.prop
+			只能获取内置属性
+
+浏览器行为
+	1.重定向
+		ajx交互事，后端不能重定向，应交给前端地址，然前攒进行重定向
+	2.跨域	
+
+
+Linux命令
+	1.查看端口  lsof -i:8000	
+
+	2.ps -ef | grep python | cut -c 9-15| xargs kill -s 9
+	3.ps -ef | grep python
+
+nginx
+	
+	nginx -t -c /home/qzx/qianfeng/AXF/config.conf
+	nginx -c /home/qzx/qianfeng/AXF/config.conf
+	nginx -s quit
+	nginx -s reload
+
+uwsgi
+	uwsgi --ini /home/qzx/qianfeng/AXF/uwsgi.ini
+	uwsgi --stop uwsgi.pid
+	uwsgi --reload uwsgi.pid
+
+
+git的流程
+	1.本地和远程仓库关联
+		1. ssh-keygen -t rsa -C 'qiuzhixin9527@163.com'	生成公钥和秘钥， 将秘钥加入到远程仓库git中
+		2.远程仓库创建工程
+		3.回本地git remote add orgin git@github.com:qiuzhixin9527/gitTest.git
+		关联成功
+
+	2.基本操作
+		4.git add q.txt
+		5.git commit -m 'create successful'
+		6.git push orgin master
+	
+	问题：1.本地库和远程库不一样
+		git pull orgin master --allow-unrelated-histories
+		
+		2.touch .gitignore 在这里的文件不会往上面推
+	
+	克隆
+	git clone git@github.com:qiuzhixin9527/gitTest.git	
+
+	
+	分支
+		创建分支	
+			1.创建分支
+				git branch dev
+			2.查看分支
+				git branch
+			3.切换分支1
+				git checkout dev
+			4.创建并且换
+				git checkout -b zhixin
+			5.推送分支
+				git push origin dev
+			想在dev分支上开发，就必须创建orgin的分支到本地
+				git checkout -b zhixin origin/zhixin
+
+		合并分支
+			要想合并到那个分支，就要先切换到那个分支(将zhixin合并到dev)
+			git checkout dev		 
+			git merge zhixin
+			注意：
+				手动删除合并错误，然后在add, commit, push dev
+		删除分支
+			1. 删除本地 git branch -d zhixin
+			2.删除远程分支git push origin :zhixin
+			3.git push origin --delete 分支名
+
+	
+	标签
+		打标签  git tag v1.0(先add ,commit, 在打标签)
+		获得标签 git tag
+		活动标签日志： git log
+		后加标签  git tag v1.1 09f11d89823bca1ecbb63297bd263a9461c3b6d3
+		切换标签 git checkout v1.0
+		删除标签(先删除本地的，在删除远程的): git tag -d v1.0     git push origin :v1.0 
+		推送标签(所有标签)： git push origin --tags， git push origin v1.0
+		
+		
+	
+		
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
