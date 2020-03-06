@@ -1,0 +1,397 @@
+linux
+	*/
+	*/bin, /usr/bin 可执行的二进制文件的目录，如ls, tar, mv, cat 等
+	/boot 放置Linux系统启动时用到的一些文件
+	/dev 存放Linux系统下的设备文件，访问该目录下某个文件，相当于访问某个设备，常用的是挂载光驱mount/dev/cdrom/mnt
+	*/etc 系统配置文件存放的目录，不建议在此目下存放可执行文件，重要的配置文件有 /etc/inittab, /etc/fstab, /etc/init.d, /etc/X11, /etc/xinetd.d
+	
+	*/home 
+	*/lib, /usr/lib, /usr/local/lib
+		系统使用的函数库的目录，程序在执行过程中，需要调用一些二外的参数时需要函数库的协助
+	/lost + found 系统异常产生错误时，会将一些遗失的片段放置于此目录下
+	/mnt, /meida: 光盘默认挂载点，通常光盘挂载于 /mnt/cdrom下， 也不一定，可以选择任意位置进行挂载
+	/opt 给主机额外安装软件所摆放的目录sudo apt install thefuck
+qzx@qzx-HP-431-Notebook-PC:~$ 
+
+
+
+
+	/proc 此目录的数据都在内存中（别改）
+	*/root 系统管理员root的家目录
+	*/sbin, /usr/sbin, /usr/local/sbin 放置系统管理员使用的可执行命令
+	/tmp 一般用户或正在执行的程序临时存放文件的目录，任何人都可以访问，重要数据不可放置在此目录下
+	/srv 服务启动之后需要访问的数据目录，如www服务需要访问的网页数据存放在/srv/www内
+	*/urs 应用程序存放目录，/usr/bin存放应用程序，/usr/share存放共享数据，/usr/lib存放不能直接运行的，确实许多程序
+		 运行所必须的一些函数库文件，/usr/local: 存放软件升级包。/usr/share/doc: 系统说明文件存放目录、/usr/share/man:
+		 程序说明文件存放目录
+	*/var 放置系统执行过程中经常变换的文件，如随时更改的日志文件 /var/long, /var/log/message:
+
+
+
+linux命令(command)
+	command [-options] [parameter]
+	ls
+		-a 全部文件
+		-l 展示文件的详情
+			drwxrwxr-x  3 qzx qzx
+			d（文件类型）rwxrwxr-x（文件权限：当前， 同组，游客） 3 qzx qzx 
+		> 追加
+
+	pwd
+	man ls 空格下一页， b上一页， /word 查找字符串
+	
+
+
+
+	> 合并
+	>> 追加
+	
+
+	显示文件中的内容
+		从第十行显示：tail -10 test.txt
+		wc 一次行显示文件的行数，字节数，文件名信息 
+
+	echo查看环境变量
+		echo $PATH 
+		/home/qzx/bin:/home/qzx/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+	mkdir d
+	mkdir d/c/e -p
+	
+
+	rm -rf 递归删除忽略无存在的文件
+
+
+
+	cp 文件名 目标文件
+		-r 复制目录时使用
+		-v 显示拷贝进度
+
+
+
+	mv 
+		移动
+		重命名
+
+	ln -s 源文件 链接文件 （软连接）使用绝对路径
+	ln 源文件 链接文件（硬链接）
+
+
+	grep
+		 grep -n 's' test.txt 匹配文件中有s的行
+		 grep -ni 's' test.txt	忽略大小写
+	
+	|
+		管道过滤
+		ls /usr/bin/ | grep 'zip'
+
+
+	find
+		
+	
+		find ./ -name test.txt/'[A-Z]*'
+1,s/df/zhixin
+	which
+		查找命令文件
+		which ls
+
+	tar(打包)
+		-c 打包
+		-v 列出进程
+		-f f后面是.tar文件
+		-x 解开档案
+		
+		 tar -cvf abc.tar abc
+		 tar -xvf abc.tar abc
+		
+		压缩
+			tar -cvzf 1.tar.gz a
+		解压
+			tar -xvzf 1.tar.gz
+			tar -xvzf 1.tar.gz -C 制定目录
+			
+	gzip（压缩）
+		gzip -r 1.tar 1.tar.gz
+		gzip -d 1.tar.gz
+
+	ps(查看进程信息)
+		-a 显示终端上的所有进程， 包du -sh my_env/括其他用户的进程
+		-u 显示进程的相信信息
+		-x 显示没有在终端上的进程
+		ps aux | grep python
+
+	top(动态显示进程)
+		M 根据内存使用量来排序
+		P CPU的占有率来排序
+		T 根据进程运行时间来排序
+		U 根据用户名
+		K 输入后面的pid来杀死进程
+		q 退出
+		h 获得帮助du -sh my_env/
+	
+
+	reboot重启
+	shutdown
+
+	
+	ping
+	ifconfig
+
+	df(显示文件系统的磁盘个空间占用和空余情况)
+	du(检查目录所占磁盘空间)
+		-s 制定文件或目录
+		-h 转换单位	
+		du -sh my_env/ 
+	
+	vim
+		命令模式
+			esc到命令模式
+			A, I, O, S
+			a, i, o, s
+			i,光标前位置
+			a,光标的后一个位置
+			o,换行
+			光标移动
+				gg 第一行的行首
+				ngg 第n行的行首				
+				L 最后一行
+				M 中间一行
+				$ 行尾
+				ctr+d/u 向下，上翻半屏
+				h,j,k,l 左,下,上,右
+
+			删除（剪切）
+				x 删除光标之后的
+				X 删除光标之前的一个字符
+				dd 删除一行
+				ndd
+				u撤销
+				ctr+r反撤销
+			复制
+				yy
+				nyy
+				
+			粘贴
+				p
+								
+				
+
+
+
+
+
+
+		输入模式
+			
+			
+		末行模式（冒号模式）
+			shift + ：
+			替换			
+				:s/sunck/zhixin/g 将光标所在的行sunck全局替换zhixin
+				:1,s/df/zhixin/g
+			
+			
+			:/	
+			
+			非法关闭正在编辑的文件的时候，
+			解决
+				enter进入文件
+				删除 1.txt.swpux
+	*/
+	*/bin, /usr/bin 可执行的二进制文件的目录，如ls, tar, mv, cat 等
+	/boot 放置Linux系统启动时用到的一些文件
+	/dev 存放Linux系统下的设备文件，访问该目录下某个文件，相当于访问某个设备，常用的是挂载光驱mount/dev/cdrom/mnt
+	*/etc 系统配置文件存放的目录，不建议在此目下存放可执行文件，重要的配置文件有 /etc/inittab, /etc/fstab, /etc/init.d, /etc/X11, /etc/xinetd.d
+	
+	*/home 
+	*/lib, /usr/lib, /usr/local/lib
+		系统使用的函数库的目录，程序在执行过程中，需要调用一些二外的参数时需要函数库的协助
+	/lost + found 系统异常产生错误时，会将一些遗失的片段放置于此目录下
+	/mnt, /meida: 光盘默认挂载点，通常光盘挂载于 /mnt/cdrom下， 也不一定，可以选择任意位置进行挂载
+	/opt 给主机额外安装软件所摆放的目录sudo apt install thefuck
+qzx@qzx-HP-431-Notebook-PC:~$ 
+
+
+
+
+	/proc 此目录的数据都在内存中（别改）
+	*/root 系统管理员root的家目录
+	*/sbin, /usr/sbin, /usr/local/sbin 放置系统管理员使用的可执行命令
+	/tmp 一般用户或正在执行的程序临时存放文件的目录，任何人都可以访问，重要数据不可放置在此目录下
+	/srv 服务启动之后需要访问的数据目录，如www服务需要访问的网页数据存放在/srv/www内
+	*/urs 应用程序存放目录，/usr/bin存放应用程序，/usr/share存放共享数据，/usr/lib存放不能直接运行的，确实许多程序
+		 运行所必须的一些函数库文件，/usr/local: 存放软件升级包。/usr/share/doc: 系统说明文件存放目录、/usr/share/man:
+		 程序说明文件存放目录
+	*/var 放置系统执行过程中经常变换的文件，如随时更改的日志文件 /var/long, /var/log/message:
+
+
+
+linux命令(command)
+	command [-options] [parameter]
+	ls
+		-a 全部文件
+		-l 展示文件的详情
+			drwxrwxr-x  3 qzx qzx
+			d（文件类型）rwxrwxr-x（文件权限：当前， 同组，游客） 3 qzx qzx 
+		> 追加
+
+	pwd
+	man ls 空格下一页， b上一页， /word 查找字符串
+	
+
+
+
+	> 合并
+	>> 追加
+	
+
+	显示文件中的内容
+		从第十行显示：tail -10 test.txt
+		wc 一次行显示文件的行数，字节数，文件名信息 
+
+	echo查看环境变量
+		echo $PATH 
+		/home/qzx/bin:/home/qzx/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+	mkdir d
+	mkdir d/c/e -p
+	
+
+	rm -rf 递归删除忽略无存在的文件
+
+
+
+	cp 文件名 目标文件
+		-r 复制目录时使用
+		-v 显示拷贝进度
+
+
+
+	mv 
+		移动
+		重命名
+
+	ln -s 源文件 链接文件 （软连接）使用绝对路径
+	ln 源文件 链接文件（硬链接）
+
+
+	grep
+		 grep -n 's' test.txt 匹配文件中有s的行
+		 grep -ni 's' test.txt	忽略大小写
+	
+	|
+		管道过滤
+		ls /usr/bin/ | grep 'zip'
+
+
+	find
+		
+	
+		find ./ -name test.txt/'[A-Z]*'
+1,s/df/zhixin
+	which
+		查找命令文件
+		which ls
+
+	tar(打包)
+		-c 打包
+		-v 列出进程
+		-f f后面是.tar文件
+		-x 解开档案
+		
+		 tar -cvf abc.tar abc
+		 tar -xvf abc.tar abc
+		
+		压缩
+			tar -cvzf 1.tar.gz a
+		解压
+			tar -xvzf 1.tar.gz
+			tar -xvzf 1.tar.gz -C 制定目录
+			
+	gzip（压缩）
+		gzip -r 1.tar 1.tar.gz
+		gzip -d 1.tar.gz
+
+	ps(查看进程信息)
+		-a 显示终端上的所有进程， 包du -sh my_env/括其他用户的进程
+		-u 显示进程的相信信息
+		-x 显示没有在终端上的进程
+		ps aux | grep python
+
+	top(动态显示进程)
+		M 根据内存使用量来排序
+		P CPU的占有率来排序
+		T 根据进程运行时间来排序
+		U 根据用户名
+		K 输入后面的pid来杀死进程
+		q 退出
+		h 获得帮助du -sh my_env/
+	
+
+	reboot重启
+	shutdown
+
+	
+	ping
+	ifconfig
+
+	df(显示文件系统的磁盘个空间占用和空余情况)
+	du(检查目录所占磁盘空间)
+		-s 制定文件或目录
+		-h 转换单位	
+		du -sh my_env/ 
+	
+	vim
+		命令模式
+			esc到命令模式
+			A, I, O, S
+			a, i, o, s
+			i,光标前位置
+			a,光标的后一个位置
+			o,换行
+			光标移动
+				gg 第一行的行首
+				ngg 第n行的行首				
+				L 最后一行
+				M 中间一行
+				$ 行尾
+				ctr+d/u 向下，上翻半屏
+				h,j,k,l 左,下,上,右
+
+			删除（剪切）
+				x 删除光标之后的
+				X 删除光标之前的一个字符
+				dd 删除一行
+				ndd
+				u撤销
+				ctr+r反撤销
+			复制
+				yy
+				nyy
+				
+			粘贴
+				p
+								
+				
+
+
+
+
+
+
+		输入模式
+			
+			
+		末行模式（冒号模式）
+			shift + ：
+			替换			
+				:s/sunck/zhixin/g 将光标所在的行sunck全局替换zhixin
+				:1,s/df/zhixin/g
+			
+			
+			:/	
+			
+			非法关闭正在编辑的文件的时候，
+			解决
+				enter进入文件
+				删除 1.txt.swp
