@@ -1,0 +1,59 @@
+
+git的流程
+	1.本地和远程仓库关联
+		1. ssh-keygen -t rsa -C 'qiuzhixin9527@163.com'	生成公钥和秘钥， 将秘钥加入到远程仓库git中
+		2.远程仓库创建工程
+		3.回本地git remote add orgin git@github.com:qiuzhixin9527/gitTest.git
+		关联成功
+
+	2.基本操作
+		4.git add q.txt
+		5.git commit -m 'create successful'
+		6.git push orgin master
+	
+	问题：1.本地库和远程库不一样
+		git pull orgin master --allow-unrelated-histories
+		
+		2.touch .gitignore 在这里的文件不会往上面推
+	
+	克隆
+	git clone git@github.com:qiuzhixin9527/gitTest.git	
+
+	
+	分支
+		创建分支	
+			1.创建分支
+				git branch dev
+			2.查看分支
+				git branch
+			3.切换分支1
+				git checkout dev
+			4.创建并且换
+				git checkout -b zhixin
+			5.推送分支
+				git push origin dev
+			想在dev分支上开发，就必须创建orgin的分支到本地
+				git checkout -b zhixin origin/zhixin
+
+		合并分支
+			要想合并到那个分支，就要先切换到那个分支(将zhixin合并到dev)
+			git checkout dev		 
+			git merge zhixin
+			注意：
+				手动删除合并错误，然后在add, commit, push dev
+		删除分支
+			1. 删除本地 git branch -d zhixin 
+				git branch -D zhixin 强制删除
+			2.删除远程分支git push origin :zhixin
+			3.git push origin --delete 分支名
+
+	
+	标签
+		打标签  git tag v1.0(先add ,commit, 在打标签)
+		获得标签 git tag
+		活动标签日志： git log
+		后加标签  git tag v1.1 09f11d89823bca1ecbb63297bd263a9461c3b6d3
+		切换标签 git checkout v1.0
+		删除标签(先删除本地的，在删除远程的): git tag -d v1.0     git push origin :v1.0 
+		推送标签(所有标签)： git push origin --tags， git push origin v1.0
+		
