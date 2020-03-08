@@ -1,0 +1,64 @@
+ 安装  pip install flask-script 启动flask，类似manage
+
+安装 pip install flask-blueprint 封装views的容器
+
+
+数据库
+	 pip install flask-sqlalchemy
+迁移文件
+	1.pip install flask-migrate
+	
+	python manage.py db init
+	python manage.py db migrate
+	python manage.py db upgrade
+	python manage.py db downgrade
+
+
+flask_command
+	1.python manage.py runserver -h 0.0.0.0 -p 8000 -d
+
+
+views 类型
+	@blue.route('/any/test/<int:id>')
+	@blue.route('/any/<any(a,c):id>')
+
+
+
+返回类型
+	return 'ok'
+	return redirect('/index')
+	return redirect(url_for('blue.hello_word', id=1))
+	return render_template('index.html', msg=id)
+	result = make_response('<h2>dfs</>')
+	终止
+		abort(404)	
+		@blue.errorhandler(404)
+
+request
+	args
+	form
+
+
+response
+
+
+会话
+	cookie
+	session
+		 pip install flask-session
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

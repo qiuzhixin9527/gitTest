@@ -1,0 +1,4 @@
+sudo modprobe -r psmouse
+
+
+ mysql-workbench
