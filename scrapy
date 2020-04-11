@@ -1,0 +1,67 @@
+
+1.scrapy startproject scrapy_junsh
+
+2.在项目里scrapy genspider qsbk "qiushibaike.com"
+		  
+  使用crawl创建模板 scrapy genspider -t crawl wxapp_spider 'wxapp-union.com'
+
+
+3.运行
+	scrapy crawl scrapy
+
+settings.py
+	ROBOTSTXT_OBEY = False
+	DEFAULT_REQUEST_HEADERS = {
+    
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/'\
+                  '537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
+}
+	DOWNLOAD_DELAY = 1
+	ITEM_PIPELINES = {
+   'scrapy_junshi.pipelines.ScrapyJunshiPipeline': 300,
+}
+
+4.使用item的好处
+	1.固定传入参数的个数
+	2.显的更专业
+
+5.Pipelines
+	保存数据的方法
+		1.自己写，自己将dict转为json
+		self.f = open('a.json', 'wb')
+		2.JsonItemExporter(self.f)
+		3.JsonLinesItemExporter(self.f)
+
+6.下载图片
+	ImagesPipeline
+		1.seetings.py
+			IMAGES_STORE = os.path.join(BASE, 'image')
+
+			ITEM_PIPELINES = {
+				'scrapy.pipelines.images.ImagesPipeline': 1,
+			}
+		2.items.py
+			image_urls = scrapy.Field()
+    		images = scrapy.Field()
+	自定义图片保存位置
+		重新get_media_requests，file_path
+
+7.中间件添加请求头
+	1.middlewares.py
+		    def process_request(self,request, spider):
+        		request.headers['User-Agent'] = ''
+	2.获取请求的请求头
+		json.loads(respond.text)['user-agent']
+
+8.中间件添加请求头
+	proxy = random.choice(proxyList)
+	request.meta['proxy'] = proxy
+	独享代理
+		user_password='1111111:qwewer'
+		b64_user_password=base64.b64encode(user_password()
+		request.headers['Proxy-Authorization'] = 'Basic' + 	b64_user_password.decode('utf-8')	
+		request.meta['proxy'] = proxy
+		
+
+
+		

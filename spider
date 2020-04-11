@@ -1,0 +1,10 @@
+1.requests中解决编解码的方法
+	r.content.decode()推荐	
+	r.content.decode('gbk')
+	r.text
+
+2.获取cookie并转为字典
+	requests.utils.dict_from_cookiejar(r.cookies)
+
+3.验证证书改为False
+	r = requests.get(url, params={'a':1}, verify=False)
